@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>About Soffi - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <style>
+      :root {
+        --primary-accent: #00BCD4; /* Teal/Cyan */
+        --secondary-accent: #FF7043; /* Coral/Orange */
+        --main-bg: #263238; /* Deep Charcoal/Dark Blue-Gray */
+        --card-bg: #F8F9FA; /* Light Off-White */
+        --text-dark: #333333; /* Dark Gray for content */
+        --text-light: #EEEEEE; /* Light Gray for contrast */
+        --border-color: #37474F; /* Slightly lighter dark gray */
+        --gradient-bg: linear-gradient(135deg, #263238 0%, #1A2327 100%); /* Subtle dark gradient */
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+        background: var(--gradient-bg); /* Use gradient background */
+        color: var(--text-light);
+        line-height: 1.7;
+        overflow-x: hidden; /* Prevent horizontal scroll due to animations */
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Poppins', sans-serif;
+        margin-top: 0;
+        line-height: 1.3;
+      }
+
+      a {
+        text-decoration: none;
+        color: var(--primary-accent);
+        transition: color 0.3s ease;
+      }
+
+      a:hover {
+        color: var(--secondary-accent);
+      }
+
+      /* --- Navigation --- */
+      nav {
+        background-color: var(--border-color);
+        display: flex;
+        justify-content: center;
+        padding: 18px 0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 3px solid var(--primary-accent);
+      }
+
+      nav a {
+        color: var(--text-light);
+        font-weight: 600;
+        font-size: 16px;
+        text-decoration: none;
+        margin: 0 25px;
+        letter-spacing: 0.8px;
+        padding: 10px 18px;
+        border-radius: 8px;
+        transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
+      }
+
+      nav a:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+        transform: translateY(-3px);
+        color: var(--primary-accent);
+      }
+
+      nav a.active {
+        background-color: var(--primary-accent);
+        box-shadow: 0 0 15px rgba(0, 188, 212, 0.5);
+        color: white;
+      }
+
+      /* --- Page Content General Style --- */
+      .page-content {
+        min-height: calc(100vh - 79px - 65px); /* Adjust for nav and footer */
+        padding: 60px 30px;
+        max-width: 1000px;
+        margin: 40px auto; /* Margin from top and bottom */
+        background: var(--card-bg);
+        border-radius: 15px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        color: var(--text-dark);
+        text-align: left;
+      }
+
+      /* --- Section Title Animation --- */
+      .page-content h1 {
+        font-size: 42px;
+        text-align: center;
+        color: var(--main-bg); /* Dark color for section title */
+        margin-bottom: 30px;
+        position: relative;
+        padding-bottom: 15px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        opacity: 0; /* Hidden for JS animation */
+        transform: translateY(20px); /* Initial state for animation */
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+      .page-content h1.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .page-content h1::after {
+        content: '';
+        display: block;
+        width: 100px;
+        height: 5px;
+        background-color: var(--secondary-accent); /* Accent color for underline */
+        margin: 15px auto 0;
+        border-radius: 3px;
+        transform: scaleX(0); /* Initial state for animation */
+        transition: transform 0.6s ease-out 0.3s; /* Delay to animate after text */
+      }
+      .page-content h1.is-visible::after {
+        transform: scaleX(1);
+      }
+
+      /* --- About Section New Layout --- */
+      .about-section {
+          display: flex; /* Use flexbox for main layout */
+          flex-direction: column; /* Stack image and text vertically by default */
+          align-items: center; /* Center items */
+          gap: 60px; /* Space between image and text */
+          margin-top: 50px;
+      }
+
+      .about-grid-item {
+          opacity: 0; /* Hidden for JS animation */
+          transform: translateY(30px); /* Initial state for animation */
+          transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      .about-grid-item.is-visible {
+          opacity: 1;
+          transform: translateY(0);
+      }
+
+      /* Staggered animation delays for text paragraphs */
+      .about-text p {
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+      }
+      .about-text p.is-visible {
+          opacity: 1;
+          transform: translateY(0);
+      }
+      /* Apply delay to each paragraph based on its order */
+      .about-text p:nth-child(1) { transition-delay: 0.1s; }
+      .about-text p:nth-child(2) { transition-delay: 0.2s; }
+      .about-text p:nth-child(3) { transition-delay: 0.3s; }
+      .about-text p:nth-child(4) { transition-delay: 0.4s; }
+      .about-text p:nth-child(5) { transition-delay: 0.5s; }
+      .about-text p:nth-child(6) { transition-delay: 0.6s; }
+
+
+      .about-image {
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 10px 25px rgba(0,0,0,0.3); /* Softer, larger shadow */
+          border: 4px solid var(--primary-accent);
+          transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hover effect */
+          max-width: 400px; /* Control image size */
+          width: 100%; /* Responsive width */
+      }
+      .about-image:hover {
+          transform: translateY(-8px) scale(1.02); /* Lift and slightly enlarge on hover */
+          box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      }
+      .about-image img {
+          width: 100%;
+          height: auto;
+          display: block;
+          transition: transform 0.5s ease; /* Smooth zoom on hover */
+      }
+      .about-image:hover img {
+        transform: scale(1.05);
+      }
+
+
+      .about-text {
+          max-width: 600px; /* Limit text width for readability */
+          text-align: justify; /* Justify text for clean edges */
+      }
+      .about-text h2 {
+          font-size: 34px; /* Slightly larger */
+          color: var(--primary-accent);
+          margin-bottom: 25px; /* More space */
+          line-height: 1.2;
+          font-weight: 700;
+          position: relative; /* For decorative line */
+          padding-bottom: 10px;
+          text-align: center; /* Center align title for small screens */
+      }
+      .about-text h2::after {
+          content: '';
+          display: block;
+          width: 60px; /* Smaller line */
+          height: 3px;
+          background-color: var(--secondary-accent);
+          position: absolute;
+          left: 50%; /* Center the line */
+          transform: translateX(-50%); /* Adjust for centering */
+          bottom: 0;
+          border-radius: 2px;
+      }
+      .about-text p {
+          margin-bottom: 20px; /* More space between paragraphs */
+          color: #555555;
+          font-size: 17px;
+          line-height: 1.8; /* Better readability */
+      }
+      .about-text p strong {
+          color: var(--main-bg);
+      }
+      .about-text p:last-of-type {
+          margin-bottom: 0; /* No margin after last paragraph */
+      }
+
+      /* Add an icon or separator */
+      .about-text .separator {
+          display: block;
+          width: 50px;
+          height: 2px;
+          background-color: var(--primary-accent);
+          margin: 30px auto; /* Center separator */
+          border-radius: 1px;
+      }
+
+
+      /* --- Footer --- */
+      footer {
+        background-color: var(--border-color);
+        color: var(--text-light);
+        text-align: center;
+        padding: 25px 0;
+        font-size: 15px;
+        box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3);
+        border-top: 3px solid var(--secondary-accent);
+      }
+
+      /* --- Media Queries --- */
+      @media (min-width: 769px) { /* Apply grid layout for larger screens */
+        .about-section {
+            flex-direction: row; /* Side-by-side for larger screens */
+            justify-content: center; /* Center the grid */
+            align-items: flex-start; /* Align items to the top */
+            gap: 80px; /* More space in larger layout */
+        }
+        .about-grid-item.about-image { /* Move image to the left (first) */
+            order: 1;
+            /* Add some responsive adjustments for image positioning if needed */
+        }
+        .about-grid-item.about-text { /* Move text to the right (second) */
+            order: 2;
+            text-align: left; /* Align text to the left for grid layout */
+        }
+        .about-text h2 {
+            text-align: left; /* Align title to the left */
+        }
+        .about-text h2::after {
+            left: 0; /* Align line to the left */
+            transform: translateX(0);
+        }
+        .about-text .separator {
+            margin: 30px 0; /* Align separator to the left */
+        }
+      }
+
+      @media (max-width: 992px) {
+        nav a {
+          font-size: 14px;
+          margin: 0 15px;
+          padding: 8px 12px;
+        }
+        .page-content {
+          padding: 50px 25px;
+          margin: 30px auto;
+        }
+        .page-content h1 {
+            font-size: 36px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        nav {
+            flex-wrap: wrap;
+            padding: 15px 10px;
+        }
+        nav a {
+          font-size: 13px;
+          margin: 5px 10px;
+          padding: 6px 10px;
+        }
+        .page-content {
+          padding: 40px 20px;
+          margin: 20px auto;
+        }
+        .page-content h1 {
+            font-size: 32px;
+        }
+        .about-text p {
+            font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav aria-label="Main navigation">
+      <a href="index.html">HOME</a>
+      <a href="about.html" class="active">ABOUT</a>
+      <a href="pengalaman.html">EXPERIENCE</a>
+      <a href="skill.html">SKILL</a>
+      <a href="sertifikat.html">CERTIFICATE</a>
+      <a href="kontak.html">CONTACT</a>
+    </nav>
+
+    <div class="page-content" role="main">
+      <h1 class="animate-on-scroll">About Me</h1>
+      <div class="about-section"> <div class="about-grid-item about-image">
+              <img src="images/soffi 2.jpg" alt="Soffi Rizkyana Putri Profile">
+          </div>
+          <div class="about-grid-item about-text">
+              <h2>Lebih Mengenal Soffi:</h2>
+              <p>Hlalo! Saya Soffi Rizkyana Putri, seorang siswa Teknik Komputer Jaringan dari SMKN 1 NGLEGOK yang sangat antusias dengan dunia digital. Sejak awal, saya terpikat oleh cara kerja jaringan komputer—bagaimana setiap kabel dan baris kode membangun jembatan konektivitas. Saya hadir untuk tidak hanya memahami, tapi juga aktif membentuk infrastruktur teknologi yang akan mendukung masa depan kita.</p>
+              <p>Sebagai siswa Teknik Komputer Jaringan (TKJ) di SMKN 1 NGLEGOK, saya telah mendalami berbagai aspek dalam dunia IT. Mulai dari konfigurasi perangkat jaringan seperti router dan switch, pembangunan infrastruktur server termasuk web server dan database, hingga praktik keamanan siber untuk melindungi data. Setiap mata pelajaran telah membentuk pemahaman saya tentang bagaimana teknologi dapat terhubung dan berfungsi secara optimal.</p>
+              <span class="separator"></span> <p>Selain keahlian teknis, saya juga pribadi yang disiplin dalam setiap tugas dan proyek, selalu menjaga tanggung jawab untuk menyelesaikan pekerjaan dengan optimal. Saya mudah beradaptasi dengan lingkungan baru dan situasi yang dinamis, serta memiliki kemampuan bekerja sama dalam tim untuk mencapai tujuan bersama. Saya percaya, kombinasi keterampilan teknis dan karakter yang kuat adalah kunci untuk memberikan kontribusi nyata di dunia teknologi.</p>
+              <p>Di luar dunia teknologi, saya menemukan keseimbangan dan inspirasi melalui memasak—menjelajahi resep baru dan berkreasi di dapur. Saya juga suka mendengarkan podcast yang memperkaya wawasan saya tentang berbagai topik. Saya percaya, kombinasi keterampilan teknis dan karakter yang kuat, dilengkapi dengan minat pribadi, adalah kunci untuk memberikan kontribusi nyata di dunia teknologi.</p>
+          </div>
+      </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Soffi Rizkyana Putri. Semua hak dilindungi undang-undang.</p>
+    </footer>
+
+    <script>
+        // Smooth Scrolling for all links (ensure this is present on every page)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // --- JavaScript for Scroll Animations (More Advanced) ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        // If it's the about-text container, also animate its children
+                        if (entry.target.classList.contains('about-text')) {
+                            const paragraphs = entry.target.querySelectorAll('p');
+                            paragraphs.forEach((p, index) => {
+                                // Staggered animation: add 'is-visible' with a delay
+                                setTimeout(() => {
+                                    p.classList.add('is-visible');
+                                }, index * 150); // 150ms delay between each paragraph
+                            });
+                        }
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            }, observerOptions);
+
+            // Observe the h1 title
+            const h1Element = document.querySelector('.page-content h1');
+            if (h1Element) {
+                observer.observe(h1Element);
+            }
+
+            // Observe the main about-section container (for overall fade-in)
+            const aboutSection = document.querySelector('.about-section');
+            if (aboutSection) {
+                observer.observe(aboutSection);
+            }
+
+            // Observe individual items within the about-section (image and text container)
+            // This is primarily for the fade-in-from-side effect on larger screens
+            const aboutGridItems = document.querySelectorAll('.about-grid-item');
+            aboutGridItems.forEach(item => {
+                observer.observe(item);
+            });
+        });
+    </script>
+  </body>
+</html>

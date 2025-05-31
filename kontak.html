@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Contact Me - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <style>
+      :root {
+        --primary-accent: #00BCD4; /* Teal/Cyan */
+        --secondary-accent: #FF7043; /* Coral/Orange */
+        --main-bg: #263238; /* Deep Charcoal/Dark Blue-Gray */
+        --card-bg: #F8F9FA; /* Light Off-White */
+        --text-dark: #333333; /* Dark Gray for content */
+        --text-light: #EEEEEE; /* Light Gray for contrast */
+        --border-color: #37474F; /* Slightly lighter dark gray */
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+        background: var(--main-bg);
+        color: var(--text-light);
+        line-height: 1.7;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Poppins', sans-serif;
+        margin-top: 0;
+        line-height: 1.3;
+      }
+
+      a {
+        text-decoration: none;
+        color: var(--primary-accent);
+        transition: color 0.3s ease;
+      }
+
+      a:hover {
+        color: var(--secondary-accent);
+      }
+
+      /* --- Navigation --- */
+      nav {
+        background-color: var(--border-color);
+        display: flex;
+        justify-content: center;
+        padding: 18px 0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 3px solid var(--primary-accent);
+      }
+
+      nav a {
+        color: var(--text-light);
+        font-weight: 600;
+        font-size: 16px;
+        text-decoration: none;
+        margin: 0 25px;
+        letter-spacing: 0.8px;
+        padding: 10px 18px;
+        border-radius: 8px;
+        transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
+      }
+
+      nav a:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+        transform: translateY(-3px);
+        color: var(--primary-accent);
+      }
+
+      nav a.active {
+        background-color: var(--primary-accent);
+        box-shadow: 0 0 15px rgba(0, 188, 212, 0.5);
+        color: white;
+      }
+
+      /* --- Page Content General Style --- */
+      .page-content {
+        min-height: calc(100vh - 79px - 65px);
+        padding: 60px 30px;
+        max-width: 800px; /* Slightly wider for contact info */
+        margin: 40px auto;
+        background: var(--card-bg);
+        border-radius: 15px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        color: var(--text-dark);
+        text-align: left;
+        opacity: 0;
+        animation: fadeIn 0.8s forwards 0.2s;
+      }
+
+      @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+
+      .page-content h1 {
+        font-size: 42px;
+        text-align: center;
+        color: var(--main-bg);
+        margin-bottom: 30px;
+        position: relative;
+        padding-bottom: 15px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+      }
+      .page-content h1::after {
+        content: '';
+        display: block;
+        width: 100px;
+        height: 5px;
+        background-color: var(--secondary-accent);
+        margin: 15px auto 0;
+        border-radius: 3px;
+      }
+
+      /* --- Contact Info Section --- */
+      .contact-info {
+          text-align: center;
+          margin-bottom: 40px;
+          font-size: 18px;
+          color: #555555;
+          line-height: 1.8;
+      }
+      .contact-info p {
+          margin-bottom: 10px;
+      }
+      .contact-info a {
+          color: var(--primary-accent);
+          text-decoration: none;
+          font-weight: 600;
+          transition: color 0.3s ease;
+      }
+      .contact-info a:hover {
+          color: var(--secondary-accent);
+          text-decoration: underline;
+      }
+      .contact-info i {
+          margin-right: 10px;
+          color: var(--secondary-accent);
+          font-size: 20px;
+      }
+
+      /* --- Contact Form Styles --- */
+      .contact-form {
+          margin-top: 30px;
+      }
+
+      .contact-form label {
+          display: block;
+          margin-bottom: 10px;
+          font-weight: 600;
+          color: var(--text-dark);
+          font-size: 16px;
+      }
+
+      .contact-form input[type="text"],
+      .contact-form input[type="email"],
+      .contact-form textarea {
+          width: 100%;
+          padding: 14px;
+          margin-bottom: 25px;
+          border: 1px solid #DDDDDD;
+          border-radius: 8px;
+          font-family: 'Roboto', sans-serif;
+          font-size: 16px;
+          color: var(--text-dark);
+          background-color: #F8F8F8;
+          transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .contact-form input[type="text"]::placeholder,
+      .contact-form input[type="email"]::placeholder,
+      .contact-form textarea::placeholder {
+          color: #AAAAAA;
+      }
+
+      .contact-form input[type="text"]:focus,
+      .contact-form input[type="email"]:focus,
+      .contact-form textarea:focus {
+          border-color: var(--primary-accent);
+          box-shadow: 0 0 10px rgba(0, 188, 212, 0.2);
+          outline: none;
+          background-color: white;
+      }
+
+      .contact-form textarea {
+          resize: vertical;
+          min-height: 150px;
+      }
+
+      .contact-form button {
+          display: block;
+          width: 100%;
+          padding: 18px; /* More padding for button */
+          background-color: var(--primary-accent); /* Primary accent for button */
+          color: white;
+          border: none;
+          border-radius: 8px;
+          font-size: 20px; /* Larger font */
+          font-weight: 700;
+          cursor: pointer;
+          transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+          box-shadow: 0 5px 15px rgba(0, 188, 212, 0.3);
+      }
+
+      .contact-form button:hover {
+          background-color: #008C9E; /* Darker primary accent on hover */
+          transform: translateY(-3px);
+          box-shadow: 0 8px 20px rgba(0, 188, 212, 0.4);
+      }
+
+      /* --- Popup/Modal Styles --- */
+      .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+
+      .popup-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .popup-content {
+        background: white;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        transform: scale(0.8);
+        transition: transform 0.3s ease;
+        color: var(--text-dark);
+        max-width: 400px;
+        width: 90%;
+      }
+
+      .popup-overlay.active .popup-content {
+        transform: scale(1);
+      }
+
+      .popup-content h2 {
+        color: var(--primary-accent);
+        font-size: 30px;
+        margin-bottom: 15px;
+      }
+
+      .popup-content p {
+        font-size: 18px;
+        margin-bottom: 30px;
+      }
+
+      .popup-content button {
+        background-color: var(--secondary-accent);
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+      }
+
+      .popup-content button:hover {
+        background-color: #E65100;
+      }
+
+      /* --- Footer --- */
+      footer {
+        background-color: var(--border-color);
+        color: var(--text-light);
+        text-align: center;
+        padding: 25px 0;
+        font-size: 15px;
+        box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3);
+        border-top: 3px solid var(--secondary-accent);
+      }
+
+      /* --- Media Queries --- */
+      @media (max-width: 992px) {
+        nav a {
+          font-size: 14px;
+          margin: 0 15px;
+          padding: 8px 12px;
+        }
+        .page-content {
+          padding: 50px 25px;
+          margin: 30px auto;
+        }
+        .page-content h1 {
+            font-size: 36px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        nav {
+            flex-wrap: wrap;
+            padding: 15px 10px;
+        }
+        nav a {
+          font-size: 13px;
+          margin: 5px 10px;
+          padding: 6px 10px;
+        }
+        .page-content {
+          padding: 40px 20px;
+          margin: 20px auto;
+        }
+        .page-content h1 {
+            font-size: 32px;
+        }
+        .contact-info {
+            font-size: 16px;
+        }
+        .contact-info i {
+            font-size: 18px;
+        }
+        .contact-form button {
+            font-size: 18px;
+            padding: 15px;
+        }
+        .popup-content {
+          padding: 30px;
+        }
+        .popup-content h2 {
+          font-size: 24px;
+        }
+        .popup-content p {
+          font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav aria-label="Main navigation">
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT</a>
+      <a href="pengalaman.html">EXPERIENCE</a>
+      <a href="skill.html">SKILL</a>
+      <a href="sertifikat.html">CERTIFICATE</a>
+      <a href="kontak.html" class="active">CONTACT</a>
+    </nav>
+
+    <div class="page-content" role="main">
+      <h1>HUBUNGI SAYA</h1>
+
+      <div class="contact-info">
+          <p>Punya pertanyaan atau ingin berkolaborasi? Jangan ragu untuk menghubungi saya!</p>
+          <p><i class="fas fa-envelope"></i> Email: <a href="mailto:soffirizky2@gmail.com">soffirizky2@gmail.com</a></p>
+          <p><i class="fas fa-phone"></i> Phone: <a href="tel:+6281234567890">+62 856-0453-7375</a></p>
+          <p><i class="fas fa-map-marker-alt"></i> Lokasi: Nglegok, Blitar, Indonesia</p>
+      </div>
+
+      <form class="contact-form" id="contactForm" action="#" method="POST"> <label for="name">Nama Lengkap:</label>
+          <input type="text" id="name" name="name" required placeholder="Masukkan nama Anda">
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required placeholder="Masukkan email Anda">
+
+          <label for="subject">Subjek:</label>
+          <input type="text" id="subject" name="subject" required placeholder="Subjek pesan Anda">
+
+          <label for="message">Pesan Anda:</label>
+          <textarea id="message" name="message" required placeholder="Tulis pesan Anda di sini..."></textarea>
+
+          <button type="submit">Kirim Pesan</button>
+      </form>
+    </div>
+
+    <div class="popup-overlay" id="successPopup">
+      <div class="popup-content">
+        <h2>Pesan Terkirim!</h2>
+        <p>Terima kasih telah menghubungi saya. Pesan Anda telah berhasil terkirim dan saya akan meresponsnya sesegera mungkin.</p>
+        <button id="closePopup">Tutup</button>
+      </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Soffi Rizkyana Putri. Semua hak dilindungi undang-undang.</p>
+    </footer>
+
+    <script>
+        // Smooth Scrolling for all links (ensure this is present on every page)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // --- Popup Logic ---
+        const contactForm = document.getElementById('contactForm');
+        const successPopup = document.getElementById('successPopup');
+        const closePopupButton = document.getElementById('closePopup');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Mencegah form untuk refresh halaman
+
+                // Anda bisa menambahkan logika validasi form di sini jika diperlukan
+                // Misalnya, memeriksa apakah semua field sudah terisi dengan benar
+
+                // Tampilkan pop-up
+                successPopup.classList.add('active');
+
+                // Opsional: Reset form setelah pengiriman (jika ingin)
+                contactForm.reset();
+            });
+        }
+
+        if (closePopupButton) {
+            closePopupButton.addEventListener('click', function() {
+                successPopup.classList.remove('active'); // Sembunyikan pop-up
+            });
+        }
+
+        // Opsional: Tutup pop-up jika mengklik di luar area konten pop-up
+        if (successPopup) {
+            successPopup.addEventListener('click', function(event) {
+                if (event.target === successPopup) {
+                    successPopup.classList.remove('active');
+                }
+            });
+        }
+    </script>
+  </body>
+</html>

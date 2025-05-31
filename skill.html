@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Skills - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <style>
+      :root {
+        --primary-accent: #00BCD4; /* Teal/Cyan */
+        --secondary-accent: #FF7043; /* Coral/Orange */
+        --main-bg: #263238; /* Deep Charcoal/Dark Blue-Gray */
+        --card-bg: #F8F9FA; /* Light Off-White */
+        --text-dark: #333333; /* Dark Gray for content */
+        --text-light: #EEEEEE; /* Light Gray for contrast */
+        --border-color: #37474F; /* Slightly lighter dark gray */
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+        background: var(--main-bg);
+        color: var(--text-light);
+        line-height: 1.7;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Poppins', sans-serif;
+        margin-top: 0;
+        line-height: 1.3;
+      }
+
+      a {
+        text-decoration: none;
+        color: var(--primary-accent);
+        transition: color 0.3s ease;
+      }
+
+      a:hover {
+        color: var(--secondary-accent);
+      }
+
+      /* --- Navigation --- */
+      nav {
+        background-color: var(--border-color);
+        display: flex;
+        justify-content: center;
+        padding: 18px 0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 3px solid var(--primary-accent);
+      }
+
+      nav a {
+        color: var(--text-light);
+        font-weight: 600;
+        font-size: 16px;
+        text-decoration: none;
+        margin: 0 25px;
+        letter-spacing: 0.8px;
+        padding: 10px 18px;
+        border-radius: 8px;
+        transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
+      }
+
+      nav a:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+        transform: translateY(-3px);
+        color: var(--primary-accent);
+      }
+
+      nav a.active {
+        background-color: var(--primary-accent);
+        box-shadow: 0 0 15px rgba(0, 188, 212, 0.5);
+        color: white;
+      }
+
+      /* --- Page Content General Style --- */
+      .page-content {
+        min-height: calc(100vh - 79px - 65px);
+        padding: 60px 30px;
+        max-width: 1000px;
+        margin: 40px auto;
+        background: var(--card-bg);
+        border-radius: 15px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        color: var(--text-dark);
+        text-align: left;
+        opacity: 0;
+        animation: fadeIn 0.8s forwards 0.2s;
+      }
+
+      @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+
+      .page-content h1 {
+        font-size: 42px;
+        text-align: center;
+        color: var(--main-bg);
+        margin-bottom: 30px;
+        position: relative;
+        padding-bottom: 15px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+      }
+      .page-content h1::after {
+        content: '';
+        display: block;
+        width: 100px;
+        height: 5px;
+        background-color: var(--secondary-accent);
+        margin: 15px auto 0;
+        border-radius: 3px;
+      }
+
+      /* New style for in-page navigation (skill sub-menu) - REMOVED */
+      /*
+      .skill-quick-links {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 15px;
+          margin-bottom: 40px;
+          padding: 15px;
+          background-color: #f0f0f0; 
+          border-radius: 10px;
+          box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+      }
+      .skill-quick-links a {
+          background-color: var(--primary-accent);
+          color: white;
+          padding: 10px 18px;
+          border-radius: 25px;
+          font-weight: 600;
+          font-size: 14px;
+          transition: background-color 0.3s ease, transform 0.2s ease;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+      }
+      .skill-quick-links a:hover {
+          background-color: var(--secondary-accent);
+          transform: translateY(-2px);
+          color: white; 
+      }
+      */
+
+
+      /* --- Skills Specific Styles --- */
+      .skills-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjusted min width */
+          gap: 35px; /* Increased gap */
+          margin-top: 40px;
+      }
+
+      .skill-category {
+          background-color: white; /* White background for skill cards */
+          border-radius: 12px; /* More rounded */
+          padding: 30px; /* More padding */
+          box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+          text-align: center;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          border-bottom: 4px solid var(--primary-accent); /* Accent border at bottom */
+      }
+      .skill-category:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+      }
+
+      .skill-category h3 {
+          font-size: 26px; /* Larger title */
+          color: var(--secondary-accent); /* Secondary accent for category title */
+          margin-bottom: 20px;
+          font-weight: 700;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+      }
+      .skill-category h3 i {
+          font-size: 28px;
+          color: var(--main-bg); /* Dark icon */
+      }
+
+      .skill-list {
+          list-style: none;
+          padding: 0;
+          text-align: left;
+      }
+
+      .skill-list li {
+          background-color: #ECEFF1; /* Lighter background for skill item */
+          color: var(--text-dark);
+          padding: 12px 18px; /* More padding */
+          margin-bottom: 10px;
+          border-radius: 8px; /* More rounded */
+          font-weight: 500;
+          font-size: 16px; /* Larger font */
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+          transition: background-color 0.3s ease, color 0.3s ease;
+      }
+      .skill-list li:hover {
+          background-color: var(--primary-accent);
+          color: white;
+      }
+      .skill-list li i {
+          color: var(--secondary-accent); /* Accent color for checkmark */
+          font-size: 18px;
+          transition: color 0.3s ease;
+      }
+      .skill-list li:hover i {
+          color: white; /* White checkmark on hover */
+      }
+
+      /* --- Footer --- */
+      footer {
+        background-color: var(--border-color);
+        color: var(--text-light);
+        text-align: center;
+        padding: 25px 0;
+        font-size: 15px;
+        box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3);
+        border-top: 3px solid var(--secondary-accent);
+      }
+
+      /* --- Media Queries --- */
+      @media (max-width: 992px) {
+        nav a {
+          font-size: 14px;
+          margin: 0 15px;
+          padding: 8px 12px;
+        }
+        .page-content {
+          padding: 50px 25px;
+          margin: 30px auto;
+        }
+        .page-content h1 {
+            font-size: 36px;
+        }
+        .skills-grid {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .skill-category {
+            padding: 25px;
+        }
+        .skill-category h3 {
+            font-size: 22px;
+        }
+        .skill-list li {
+            font-size: 15px;
+            padding: 10px 15px;
+        }
+        /*
+        .skill-quick-links a { 
+            font-size: 13px;
+            padding: 8px 15px;
+        }
+        */
+      }
+
+      @media (max-width: 768px) {
+        nav {
+            flex-wrap: wrap;
+            padding: 15px 10px;
+        }
+        nav a {
+          font-size: 13px;
+          margin: 5px 10px;
+          padding: 6px 10px;
+        }
+        .page-content {
+          padding: 40px 20px;
+          margin: 20px auto;
+        }
+        .page-content h1 {
+            font-size: 32px;
+        }
+        .skills-grid {
+            grid-template-columns: 1fr; /* Stack skills on smaller screens */
+            gap: 25px;
+        }
+        .skill-category {
+            padding: 20px;
+        }
+        .skill-category h3 {
+            font-size: 20px;
+        }
+        .skill-list li {
+            font-size: 14px;
+        }
+        /*
+        .skill-quick-links { 
+            flex-direction: column;
+            align-items: center;
+        }
+        .skill-quick-links a {
+            width: 100%; 
+            text-align: center;
+        }
+        */
+      }
+    </style>
+  </head>
+  <body>
+    <nav aria-label="Main navigation">
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT</a>
+      <a href="pengalaman.html">EXPERIENCE</a>
+      <a href="skill.html" class="active">SKILL</a>
+      <a href="sertifikat.html">CERTIFICATE</a>
+      <a href="kontak.html">CONTACT</a>
+    </nav>
+
+    <div class="page-content" role="main">
+      <h1>KEMAMPUAN SAYA</h1>
+
+      <div class="skills-grid">
+          <div class="skill-category" id="networking">
+            <h3><i class="fas fa-network-wired"></i> MIKROTIK</h3>
+              <ul class="skill-list">
+                  <li><i class="fas fa-check-circle"></i> Basic Subnetting dan IP Address</li>
+                  <li><i class="fas fa-check-circle"></i> Konfigurasi DHCP Server dan DHCP Client</li>
+                  <li><i class="fas fa-check-circle"></i> Firewall NAT</li>
+                  <li><i class="fas fa-check-circle"></i> Setting AP Bridge dan Station</li>
+                  <li><i class="fas fa-check-circle"></i> Routing OSPF dan Static</li>
+              </ul>
+          </div>
+          <div class="skill-category" id="programming">
+            <h3><i class="fas fa-code"></i> DEBIAN</h3>
+              <ul class="skill-list">
+                  <li><i class="fas fa-check-circle"></i> Install dan Konfigurasi Debian</li>
+                  <li><i class="fas fa-check-circle"></i> Konfigurasi Repository</li>
+                  <li><i class="fas fa-check-circle"></i> Konfigurasi SSH Server dan SSH Keygen</li>
+                  <li><i class="fas fa-check-circle"></i> Konfigurasi DNS</li>
+                  <li><i class="fas fa-check-circle"></i> Konfigurasi Web Server (Wordpress dan Sourcode)</li>
+              </ul>
+          </div>
+          <div class="skill-category" id="tools">
+            <h3><i class="fas fa-tools"></i> HTML</h3>
+              <ul class="skill-list">
+                  <li><i class="fas fa-check-circle"></i> Struktur Dasar HTML</li>
+                  <li><i class="fas fa-check-circle"></i> Pembuatan Tag, Atribut dan Elemen HTML</li>
+                  <li><i class="fas fa-check-circle"></i> Membuat Tabel HTML</li>
+                  <li><i class="fas fa-check-circle"></i> Membuat Tautan dan Navigasi</li>
+                  <li><i class="fas fa-check-circle"></i> Membuat Formulir HTML</li>
+                  <li><i class="fas fa-check-circle"></i> Membuat Website  Berbasis HTML</li>
+              </ul>
+          </div>
+          <div class="skill-category" id="softskills">
+            <h3><i class="fas fa-brain"></i> JavaScript</h3>
+              <ul class="skill-list">
+                  <li><i class="fas fa-check-circle"></i> Struktur Dasar JavaScript</li>
+                  <li><i class="fas fa-check-circle"></i> Aturan Penulisan Code JavaScript</li>
+                  <li><i class="fas fa-check-circle"></i> Tipe Data JavaScript</li>
+                  <li><i class="fas fa-check-circle"></i> Function dan Objec JavaScript</li>
+                  <li><i class="fas fa-check-circle"></i> Array dan Objec JavaScript</li>
+                  <li><i class="fas fa-check-circle"></i> Kondisi dan perulanngan JavaScript</li>
+              </ul>
+          </div>
+          <div class="skill-category" id="mikrotik-skill">
+            <h3><i class="fas fa-microchip"></i> CSS</h3>
+              <ul class="skill-list">
+                  <li><i class="fas fa-check-circle"></i> Cara Menulis CSS (Inline, Internal)</li>
+                  <li><i class="fas fa-check-circle"></i> Sintaks Dasar CSS (Selector, Properti)</li>
+                  <li><i class="fas fa-check-circle"></i> Selector CSS (Elemen, Class, Attribute)</li>
+                  <li><i class="fas fa-check-circle"></i> Properti CSS (Font, Warna, Ukuran, Spasi)</li>
+                  <li><i class="fas fa-check-circle"></i> Box Model CSS (Content, Padding, Border)</li>
+              </ul>
+          </div>
+          <div class="skill-category" id="debian-skill">
+            <h3><i class="fab fa-debian"></i> GOOGLE</h3>
+              <ul class="skill-list">
+                  <li><i class="fas fa-check-circle"></i> Mengelola Gmail, Google Docs, Google Spreadsheets, Youtube, Google Classroom, Google Chat</li>
+                  <li><i class="fas fa-check-circle"></i> Mengelola dan Mengatur File Google Drive</li>
+                  <li><i class="fas fa-check-circle"></i> Berpengalaman Dalam Menggunakan Google Meet untuk Bekomunikasi Virtual</li>
+              </ul>
+          </div>
+      </div>
+    </div>
+
+    <footer>
+        <p>© 2024 Soffi Rizkyana Putri. Semua hak dilindungi undang-undang.</p>
+    </footer>
+
+    <script>
+        // Removed the smooth scrolling script for the skill quick links
+        /*
+        document.querySelectorAll('.skill-quick-links a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault(); 
+                const targetId = this.getAttribute('href'); 
+                const targetElement = document.querySelector(targetId); 
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        */
+
+        // Original smooth scrolling for main nav (this part is fine as it is)
+        document.querySelectorAll('nav a[href^="soffi"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+            });
+        });
+    </script>
+  </body>
+</html>

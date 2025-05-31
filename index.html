@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Soffi Rizkyana Putri - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <style>
+      :root {
+        --primary-accent: #00BCD4; /* Teal/Cyan */
+        --secondary-accent: #FF7043; /* Coral/Orange */
+        --main-bg: #263238; /* Deep Charcoal/Dark Blue-Gray */
+        --card-bg: #F8F9FA; /* Light Off-White */
+        --text-dark: #333333; /* Dark Gray for content */
+        --text-light: #EEEEEE; /* Light Gray for contrast */
+        --border-color: #37474F; /* Slightly lighter dark gray */
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: 'Roboto', sans-serif; /* Body font */
+        background: var(--main-bg);
+        color: var(--text-light);
+        line-height: 1.7;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Poppins', sans-serif; /* Headings font */
+        margin-top: 0;
+        line-height: 1.3;
+      }
+
+      a {
+        text-decoration: none;
+        color: var(--primary-accent);
+        transition: color 0.3s ease;
+      }
+
+      a:hover {
+        color: var(--secondary-accent);
+      }
+
+      /* --- Navigation --- */
+      nav {
+        background-color: var(--border-color); /* Darker shade for nav */
+        display: flex;
+        justify-content: center;
+        padding: 18px 0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 3px solid var(--primary-accent);
+      }
+
+      nav a {
+        color: var(--text-light);
+        font-weight: 600;
+        font-size: 16px;
+        text-decoration: none;
+        margin: 0 25px;
+        letter-spacing: 0.8px;
+        padding: 10px 18px;
+        border-radius: 8px;
+        transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
+      }
+
+      nav a:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+        transform: translateY(-3px);
+        color: var(--primary-accent);
+      }
+
+      nav a.active {
+        background-color: var(--primary-accent);
+        box-shadow: 0 0 15px rgba(0, 188, 212, 0.5);
+        color: white;
+      }
+
+      /* --- Hero Section --- */
+      .hero-container {
+        min-height: calc(100vh - 79px); /* Adjust based on nav height */
+        background: linear-gradient(135deg, var(--main-bg) 0%, #37474F 100%); /* Subtle gradient */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 20px;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .hero-content-wrapper {
+        max-width: 1100px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 280px 1fr; /* Slightly larger image section */
+        align-items: center;
+        gap: 60px; /* Increased gap */
+        background: var(--card-bg);
+        padding: 50px; /* Increased padding */
+        border-radius: 15px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+        position: relative;
+        z-index: 1;
+        transform: scale(0.98); /* Initial subtle scaling */
+        animation: fadeInScale 0.8s forwards; /* Animation on load */
+      }
+
+      @keyframes fadeInScale {
+          from { opacity: 0; transform: scale(0.95); }
+          to { opacity: 1; transform: scale(1); }
+      }
+
+      .hero-left-section {
+        color: var(--text-dark);
+        text-align: center;
+      }
+
+      .hero-left-section h2 {
+        font-weight: 800;
+        font-size: 28px;
+        margin: 0;
+        color: var(--text-dark);
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+      }
+
+      .hero-left-section h3 {
+        font-weight: 700;
+        font-size: 22px;
+        margin: 8px 0 20px 0;
+        color: var(--text-dark);
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+      }
+
+      .hero-underline {
+        width: 150px; /* Increased width */
+        height: 5px; /* Thicker */
+        background-color: var(--secondary-accent); /* Changed underline color */
+        margin: 0 auto 30px auto;
+        border-radius: 3px;
+      }
+
+      .social-icons {
+        display: flex;
+        justify-content: center;
+        gap: 18px; /* Increased gap */
+      }
+
+      .social-icons a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px; /* Larger icons */
+        height: 50px;
+        border-radius: 50%; /* Fully round */
+        background-color: var(--border-color); /* Darker background for icons */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        transform: translateY(-6px) scale(1.1); /* More pronounced lift and slight scale */
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        background-color: var(--primary-accent); /* Highlight on hover */
+      }
+
+      .social-icons a i {
+        font-size: 24px; /* Larger icon font */
+        color: white;
+      }
+
+      /* Specific social icon colors */
+      .social-icons .instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+      .social-icons .youtube { background: #FF0000; }
+      .social-icons .email { background: #D14836; }
+      .social-icons .linkedin { background: #0A66C2; }
+      .social-icons .github { background: #333333; }
+
+
+      .hero-center-section {
+        border: 10px solid var(--primary-accent); /* Thicker, primary accent border */
+        border-radius: 50%;
+        overflow: hidden;
+        width: 280px; /* Larger image size */
+        height: 280px;
+        box-shadow: 0 0 30px 8px rgba(0, 0, 0, 0.6);
+        justify-self: center;
+        animation: pulse 2.5s infinite alternate; /* Slower pulse */
+      }
+
+      .hero-center-section img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.3s ease;
+      }
+
+      .hero-center-section:hover img {
+          transform: scale(1.05); /* Zoom effect on image hover */
+      }
+
+      .hero-right-section {
+        color: var(--text-dark);
+        font-size: 17px;
+        line-height: 1.8;
+        text-align: left;
+      }
+
+      .hero-right-section .intro-label {
+        font-weight: 700;
+        font-size: 15px;
+        color: var(--secondary-accent); /* Secondary accent for label */
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+      }
+
+      .hero-right-section .hello-text {
+        font-weight: 900;
+        font-size: 42px; /* Larger font size */
+        margin: 0 0 15px 0;
+        color: var(--text-dark);
+      }
+
+      .hero-right-section .hello-text .pink {
+        color: var(--primary-accent); /* Primary accent for name */
+      }
+
+      .hero-right-section p {
+        margin: 0;
+        font-weight: 400;
+      }
+
+      .typed-text {
+        color: var(--secondary-accent); /* Secondary accent for typed text */
+        font-weight: 700;
+      }
+
+      /* --- General Section Styling (for future sections like Projects) --- */
+      .section {
+        padding: 80px 30px; /* More padding */
+        text-align: center;
+        background-color: var(--main-bg);
+        color: var(--text-light);
+      }
+
+      .section h2 {
+        font-size: 42px; /* Larger section title */
+        margin-bottom: 25px;
+        color: white;
+        position: relative;
+        padding-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .section h2::after {
+        content: '';
+        display: block;
+        width: 100px;
+        height: 5px;
+        background-color: var(--secondary-accent); /* Accent color for underline */
+        margin: 15px auto 0;
+        border-radius: 3px;
+      }
+
+      /* --- Projects Section --- */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Slightly larger min-width */
+        gap: 35px; /* Increased gap */
+        max-width: 1200px;
+        margin: 50px auto 0;
+      }
+
+      .project-card {
+        background: var(--card-bg);
+        border-radius: 12px; /* Slightly more rounded */
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+        overflow: hidden;
+        text-align: left;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        color: var(--text-dark);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+      }
+
+      .project-card:hover {
+        transform: translateY(-10px); /* More pronounced lift */
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+      }
+
+      .project-card img {
+        width: 100%;
+        height: 220px; /* Slightly taller images */
+        object-fit: cover;
+        display: block;
+      }
+
+      .project-card-content {
+        padding: 30px; /* More padding */
+      }
+
+      .project-card h3 {
+        font-size: 24px; /* Larger title */
+        margin-bottom: 12px;
+        color: var(--primary-accent); /* Primary accent for title */
+      }
+
+      .project-card p {
+        font-size: 15px;
+        margin-bottom: 18px;
+        color: #555555; /* Slightly darker text */
+      }
+
+      .project-card .tech-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px; /* Increased gap */
+        margin-bottom: 20px;
+      }
+
+      .project-card .tech-pill {
+        background-color: var(--light-blue); /* Lighter blue for pills */
+        color: var(--main-bg); /* Dark text on pills */
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .project-card .project-links a {
+        display: inline-flex; /* Use flex for icon alignment */
+        align-items: center;
+        gap: 5px;
+        margin-right: 20px;
+        color: var(--secondary-accent); /* Secondary accent for links */
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 15px;
+        transition: color 0.3s ease;
+      }
+
+      .project-card .project-links a:hover {
+        color: var(--primary-accent);
+        text-decoration: underline;
+      }
+
+      /* --- Footer --- */
+      footer {
+        background-color: var(--border-color); /* Darker shade for footer */
+        color: var(--text-light);
+        text-align: center;
+        padding: 25px 0;
+        font-size: 15px;
+        box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3);
+        border-top: 3px solid var(--secondary-accent);
+      }
+
+      /* --- Animations --- */
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+          box-shadow: 0 0 30px 8px rgba(0, 188, 212, 0.4); /* Primary accent glow */
+        }
+        100% {
+          transform: scale(1.04);
+          box-shadow: 0 0 45px 12px rgba(0, 188, 212, 0.6);
+        }
+      }
+
+      /* --- Media Queries --- */
+      @media (max-width: 992px) {
+        .hero-content-wrapper {
+          grid-template-columns: 1fr;
+          gap: 50px;
+          padding: 40px;
+        }
+        .hero-left-section,
+        .hero-right-section {
+          text-align: center;
+          width: 100%;
+        }
+        .hero-right-section {
+          font-size: 16px;
+        }
+        .hero-center-section {
+          width: 250px;
+          height: 250px;
+        }
+        .hero-left-section h2 {
+          font-size: 24px;
+        }
+        .hero-left-section h3 {
+          font-size: 20px;
+        }
+        .hero-right-section .hello-text {
+          font-size: 36px;
+        }
+        .projects-grid {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            padding: 0 20px;
+        }
+        .section h2 {
+            font-size: 36px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        nav a {
+          font-size: 14px;
+          margin: 0 15px;
+          padding: 8px 12px;
+        }
+        .hero-container {
+          padding: 30px 15px;
+        }
+        .hero-content-wrapper {
+          padding: 30px;
+          gap: 40px;
+        }
+        .hero-center-section {
+          width: 220px;
+          height: 220px;
+          border-width: 8px;
+        }
+        .hero-left-section h2 {
+          font-size: 22px;
+        }
+        .hero-left-section h3 {
+          font-size: 18px;
+        }
+        .hero-right-section .hello-text {
+          font-size: 30px;
+        }
+        .social-icons a {
+          width: 45px;
+          height: 45px;
+          font-size: 22px;
+        }
+        .section h2 {
+            font-size: 32px;
+        }
+        .project-card-content {
+            padding: 20px;
+        }
+        .project-card h3 {
+            font-size: 20px;
+        }
+        .project-card img {
+            height: 180px;
+        }
+      }
+
+      @media (max-width: 576px) {
+        nav {
+            flex-wrap: wrap;
+            padding: 15px 10px;
+        }
+        nav a {
+          font-size: 12px;
+          margin: 5px 8px;
+          padding: 6px 10px;
+        }
+        .hero-content-wrapper {
+          padding: 25px;
+          gap: 30px;
+        }
+        .hero-center-section {
+          width: 180px;
+          height: 180px;
+          border-width: 6px;
+        }
+        .hero-left-section h2 {
+          font-size: 20px;
+        }
+        .hero-left-section h3 {
+          font-size: 16px;
+        }
+        .hero-right-section .hello-text {
+          font-size: 26px;
+        }
+        .social-icons a {
+          width: 40px;
+          height: 40px;
+          font-size: 20px;
+        }
+        .section h2 {
+            font-size: 28px;
+            padding-bottom: 10px;
+        }
+        .section h2::after {
+            width: 80px;
+            height: 4px;
+        }
+        .projects-grid {
+            gap: 25px;
+        }
+        .project-card p {
+            font-size: 14px;
+        }
+        .project-card .tech-pill {
+            font-size: 11px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav aria-label="Main navigation">
+      <a href="" class="active">HOME</a>
+      <a href="">ABOUT</a>
+      <a href="pengalaman.html">EXPERIENCE</a>
+      <a href="skill.html">SKILL</a>
+      <a href="sertifikat.html">CERTIFICATE</a>
+      <a href="kontak.html">CONTACT</a>
+    </nav>
+    <div class="hero-container" role="main">
+      <div class="hero-content-wrapper">
+        <div aria-label="Name and social media links" class="hero-left-section">
+          <h2>SOFFI RIZKYANA</h2>
+          <h3>PUTRI •</h3>
+          <div class="hero-underline"></div>
+          <div class="social-icons">
+            <a aria-label="Instagram profile link" href="https://www.instagram.com/soffikyana?igsh=aGNiYWE0OHV4cGR5" target="_blank" rel="noopener noreferrer" class="instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a aria-label="YouTube channel link" href="https://youtube.com/@soffirizkyanaputri?si=Ss1RZzU-F2Ob4Vlz" target="_blank" rel="noopener noreferrer" class="youtube">
+              <i class="fab fa-youtube"></i>
+            </a>
+            <a aria-label="Email: soffirizky2@gmail.com" href="mailto:soffirizky2@gmail.com" class="email">
+              <i class="fas fa-envelope"></i>
+            </a>
+            <a aria-label="LinkedIn profile link" href="https://www.linkedin.com/in/Soffi Rizkyana Putri" target="_blank" rel="noopener noreferrer" class="linkedin">
+                <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a aria-label="GitHub profile link" href="https://github.com/soffirizkyana" target="_blank" rel="noopener noreferrer" class="github">
+                <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+        <div class="hero-center-section">
+          <img alt="profil" height="280" src="images/soffi 2.jpg" width="280" />
+        </div>
+        <div aria-label="Introduction text" class="hero-right-section">
+          <h1 class="hello-text">
+            HELLO, I'm <span class="pink">SOFFI</span>
+            <br />
+            <span class="typed-text"></span>
+          </h1>
+          <p>
+            Saya adalah pelajar di SMKN 1 NGLEGOK dengan jurusan Teknik Komputer Jaringan (TKJ). Saya antusias dalam belajar dan mengembangkan diri di bidang teknologi dan siap menghadapi tantangan baru.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <section id="projects" class="section">
+        <h2>My Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <img src="images/JARINGAN2.jpg" alt="jaringan">
+                <div class="project-card-content">
+                    <h3>KONFIGURASI JARINGAN</h3>
+                    <p>Saatnya kita tunjukkan kreativitas dalam konfigurasi jaringan! Mari pecahkan setiap tantangan, optimalkan setiap pengaturan, dan bangun sistem jaringan yang efisien serta andal. Bersama, kita wujudkan jaringan impian kita!</p>
+                    <div class="tech-pills">
+                        <span class="tech-pill">Mikrotik</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#"><i class="fas fa-external-link-alt"></i> View Demo</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="images/WEB SERVER.jpg" alt="web server">
+                <div class="project-card-content">
+                    <h3>WEB SERVER</h3>
+                    <p>Siap menjelajahi jantung internet? Itulah web server! Ini adalah fondasi tempat website-website keren yang sering kita kunjungi 'tinggal'. Dengan memahami cara kerjanya, kita tidak hanya tahu bagaimana internet berfungsi, tapi juga bisa mulai membangun dan mengelola dunia online kita sendiri!</p>
+                    <div class="tech-pills">
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">CSS</span>
+                        <span class="tech-pill">JavaScript</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#"><i class="fas fa-external-link-alt"></i> View Demo</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="images/INFRASTRUKTUR.jpg" alt="infra">
+                <div class="project-card-content">
+                    <h3>INFRASTRUKTUR  JARINGAN</h3>
+                    <p>Mari kita rancang dan bangun infrastruktur jaringan yang bukan hanya sekadar kabel dan perangkat, tapi sebuah fondasi kokoh yang menghubungkan ide, inovasi, dan masa depan. Dengan tangan kita, kita ciptakan jembatan digital yang tak terbatas!</p>
+                    <div class="tech-pills">
+                        <span class="tech-pill">Konsep Jaringan Dasar</span>
+                        <span class="tech-pill">Wireless</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#"><i class="fas fa-file-alt"></i> Documentation</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Soffi Rizkyana Putri. Semua hak dilindungi undang-undang.</p>
+    </footer>
+
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script>
+        // Smooth Scrolling for internal links (e.g., #projects)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Typed.js for dynamic text in hero section
+        var typed = new Typed('.typed-text', {
+            strings: [
+                "Pelajar TKJ",
+                "Teknik Komputer Jaringan",
+                "Web Server",
+                "Soffi Rizkyana Putri"
+            ],
+            typeSpeed: 70,
+            backSpeed: 40,
+            loop: true,
+            showCursor: true,
+            cursorChar: '|',
+            autoInsertCss: true,
+        });
+    </script>
+  </body>
+</html>

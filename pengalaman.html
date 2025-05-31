@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <title>Experience - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+    <style>
+      :root {
+        --primary-accent: #00BCD4; /* Teal/Cyan */
+        --secondary-accent: #FF7043; /* Coral/Orange */
+        --main-bg: #263238; /* Deep Charcoal/Dark Blue-Gray */
+        --card-bg: #F8F9FA; /* Light Off-White */
+        --text-dark: #333333; /* Dark Gray for content */
+        --text-light: #EEEEEE; /* Light Gray for contrast */
+        --border-color: #37474F; /* Slightly lighter dark gray */
+        --tkj-accent: #66BB6A; /* Green accent for TKJ */
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: 'Roboto', sans-serif;
+        background: var(--main-bg);
+        color: var(--text-light);
+        line-height: 1.7;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Poppins', sans-serif;
+        margin-top: 0;
+        line-height: 1.3;
+      }
+
+      a {
+        text-decoration: none;
+        color: var(--primary-accent);
+        transition: color 0.3s ease;
+      }
+
+      a:hover {
+        color: var(--secondary-accent);
+      }
+
+      /* --- Navigation --- */
+      nav {
+        background-color: var(--border-color);
+        display: flex;
+        justify-content: center;
+        padding: 18px 0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 3px solid var(--primary-accent);
+      }
+
+      nav a {
+        color: var(--text-light);
+        font-weight: 600;
+        font-size: 16px;
+        text-decoration: none;
+        margin: 0 25px;
+        letter-spacing: 0.8px;
+        padding: 10px 18px;
+        border-radius: 8px;
+        transition: background-color 0.3s ease, transform 0.2s ease, color 0.3s ease;
+      }
+
+      nav a:hover {
+        background-color: rgba(255, 255, 255, 0.15);
+        transform: translateY(-3px);
+        color: var(--primary-accent);
+      }
+
+      nav a.active {
+        background-color: var(--primary-accent);
+        box-shadow: 0 0 15px rgba(0, 188, 212, 0.5);
+        color: white;
+      }
+
+      /* --- Page Content General Style --- */
+      .page-content {
+        min-height: calc(100vh - 79px - 65px);
+        padding: 60px 30px;
+        max-width: 1000px;
+        margin: 40px auto;
+        background: var(--card-bg);
+        border-radius: 15px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        color: var(--text-dark);
+        text-align: left;
+        opacity: 0;
+        animation: fadeIn 0.8s forwards 0.2s;
+      }
+
+      @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+
+      .page-content h1 {
+        font-size: 42px;
+        text-align: center;
+        color: var(--main-bg);
+        margin-bottom: 30px;
+        position: relative;
+        padding-bottom: 15px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+      }
+      .page-content h1::after {
+        content: '';
+        display: block;
+        width: 100px;
+        height: 5px;
+        background-color: var(--secondary-accent);
+        margin: 15px auto 0;
+        border-radius: 3px;
+      }
+
+      /* --- Single, Highlighted Experience (PKL) --- */
+      .highlighted-experience {
+        background-color: white;
+        border-left: 10px solid var(--primary-accent);
+        padding: 40px 50px;
+        position: relative;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        transition: transform 0.5s ease, box-shadow 0.5s ease;
+        overflow: hidden;
+        max-width: 800px;
+        margin: 0 auto 50px auto; /* Added margin-bottom to separate from next section */
+        text-align: center;
+      }
+
+      .highlighted-experience:hover {
+        transform: translateY(-12px) rotateX(2deg);
+        box-shadow: 0 18px 45px rgba(0,0,0,0.3);
+      }
+
+      .highlighted-experience::before {
+        content: '\f0b1'; /* Briefcase icon */
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        position: absolute;
+        left: -25px;
+        top: 40px;
+        font-size: 48px;
+        color: var(--secondary-accent);
+        background-color: white;
+        padding: 8px;
+        border-radius: 50%;
+        box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        z-index: 1;
+      }
+
+      .highlighted-experience h2 {
+        font-size: 38px;
+        color: var(--primary-accent);
+        margin-bottom: 15px;
+        font-weight: 800;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .highlighted-experience h2 i {
+        color: var(--main-bg);
+        font-size: 45px;
+      }
+
+      .highlighted-experience .context-info {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 30px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 1.6;
+        padding: 0 20px;
+      }
+
+      /* --- Experience Details Container (for two columns) --- */
+      .experience-details-container {
+        display: flex;
+        flex-wrap: wrap; /* Allows wrapping on smaller screens */
+        gap: 30px; /* Space between the two columns */
+        max-width: 800px;
+        margin: 50px auto; /* Center the container */
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        background-color: white; /* Unified background for the two columns */
+        padding: 30px;
+      }
+
+      .experience-section {
+        flex: 1; /* Each section takes equal width */
+        min-width: 300px; /* Minimum width before wrapping */
+        background-color: #f8f9fa; /* Slightly off-white for internal cards */
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-top: 5px solid var(--secondary-accent); /* Unique border for each */
+      }
+
+      .experience-section.tkj {
+        border-top-color: var(--tkj-accent); /* Different border color for TKJ */
+      }
+
+      .experience-section:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      }
+
+      .experience-section h3 {
+        font-size: 28px;
+        color: var(--main-bg);
+        margin-bottom: 20px;
+        font-weight: 700;
+        text-align: center;
+        position: relative;
+        padding-bottom: 10px;
+      }
+
+      .experience-section h3::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 4px;
+        background-color: var(--secondary-accent);
+        margin: 10px auto 0;
+        border-radius: 2px;
+      }
+
+      .experience-section.tkj h3::after {
+         background-color: var(--tkj-accent); /* Different line color for TKJ */
+      }
+
+      .experience-section ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .experience-section ul li {
+        margin-bottom: 15px;
+        font-size: 17px;
+        color: #444444;
+        position: relative;
+        padding-left: 35px;
+        line-height: 1.5;
+        font-weight: 400;
+      }
+      .experience-section ul li::before {
+        content: '\f00c'; /* Checkmark icon by default */
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        color: var(--secondary-accent);
+        font-size: 22px;
+        position: absolute;
+        left: 0;
+        top: 0px;
+      }
+      .experience-section.tkj ul li::before {
+        content: '\f108'; /* Laptop icon for TKJ */
+        color: var(--tkj-accent); /* TKJ accent color for bullet */
+        font-size: 20px; /* Slightly smaller for laptop icon */
+      }
+
+
+      /* --- Footer --- */
+      footer {
+        background-color: var(--border-color);
+        color: var(--text-light);
+        text-align: center;
+        padding: 25px 0;
+        font-size: 15px;
+        box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.3);
+        border-top: 3px solid var(--secondary-accent);
+        margin-top: 50px; /* Added margin-top for separation */
+      }
+
+      /* --- Media Queries --- */
+      @media (max-width: 992px) {
+        nav a {
+          font-size: 14px;
+          margin: 0 15px;
+          padding: 8px 12px;
+        }
+        .page-content {
+          padding: 50px 25px;
+          margin: 30px auto;
+        }
+        .page-content h1 {
+            font-size: 36px;
+        }
+        .highlighted-experience {
+            padding: 30px 40px;
+        }
+        .highlighted-experience h2 {
+            font-size: 32px;
+        }
+        .highlighted-experience h2 i {
+            font-size: 38px;
+        }
+        .highlighted-experience .context-info {
+            font-size: 16px;
+        }
+        .highlighted-experience::before {
+            left: -20px;
+            font-size: 40px;
+            top: 30px;
+        }
+        .experience-details-container {
+            flex-direction: column; /* Stack columns on smaller screens */
+            padding: 20px;
+            gap: 25px;
+        }
+        .experience-section {
+            padding: 25px;
+            min-width: unset; /* Remove min-width to allow full flexibility */
+        }
+        .experience-section h3 {
+            font-size: 24px;
+        }
+        .experience-section ul li {
+            font-size: 16px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        nav {
+            flex-wrap: wrap;
+            padding: 15px 10px;
+        }
+        nav a {
+          font-size: 13px;
+          margin: 5px 10px;
+          padding: 6px 10px;
+        }
+        .page-content {
+          padding: 40px 20px;
+          margin: 20px auto;
+        }
+        .page-content h1 {
+            font-size: 32px;
+        }
+        .highlighted-experience {
+            padding: 25px 30px;
+            border-left-width: 8px;
+        }
+        .highlighted-experience h2 {
+            font-size: 28px;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .highlighted-experience h2 i {
+            font-size: 32px;
+        }
+        .highlighted-experience .context-info {
+            font-size: 15px;
+        }
+        .highlighted-experience::before {
+            left: -15px;
+            font-size: 35px;
+            top: 25px;
+        }
+        .experience-details-container {
+            margin: 30px auto;
+        }
+        .experience-section h3 {
+            font-size: 20px;
+        }
+        .experience-section ul li {
+            font-size: 15px;
+            padding-left: 28px;
+        }
+        .experience-section ul li::before {
+            font-size: 18px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .highlighted-experience h2 {
+            font-size: 24px;
+        }
+        .highlighted-experience h2 i {
+            font-size: 28px;
+        }
+        .highlighted-experience .context-info {
+            font-size: 13px;
+            padding: 0 10px;
+        }
+        .experience-section {
+            padding: 20px;
+        }
+        .experience-section h3 {
+            font-size: 18px;
+        }
+        .experience-section ul li {
+            font-size: 14px;
+            padding-left: 25px;
+        }
+        .experience-section ul li::before {
+            font-size: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav aria-label="Main navigation">
+      <a href="index.html">HOME</a>
+      <a href="about.html">ABOUT</a>
+      <a href="pengalaman.html" class="active">EXPERIENCE</a>
+      <a href="skill.html">SKILL</a>
+      <a href="sertifikat.html">CERTIFICATE</a>
+      <a href="kontak.html">CONTACT</a>
+    </nav>
+    <div class="page-content" role="main">
+      <h1>Pengalaman Saya</h1>
+      <div class="highlighted-experience">
+          <h2><i class="fas fa-seedling"></i> Kegiatan Belajar dan Berkembang </h2>
+          <div class="context-info">
+            Sejak mulai bersekolah di SMK pada tahun 2023, saya telah mengalami banyak proses pembelajaran yang bermakna. Tidak hanya teori di kelas, tetapi juga praktik langsung, kerja kelompok, dan tugas-tugas yang mendorong kreativitas. Semua ini menjadi dasar penting dalam memahami dunia IT dan membentuk cara berpikir yang lebih matang.
+          </div>
+      </div>
+      <div class="experience-details-container">
+          <div class="experience-section pkl-contributions">
+              <h3>Adaptasi, Norma, dan Pertumbuhan Diri</h3>
+              <ul>
+                  <li>Berhasil menyusun dan mengelola Antologi Cerpen Kelas</li>
+                  <li>Mampu mengembangkan proposal proyek yang komprehensif dan persuasif</li>
+                  <li>Aktif berpartisipasi dalam berbagai seminar profesional yang diadakan di sekolah</li>
+                  <li>Berinovasi dan mengimplementasikan solusi dalam ajang Invention TKJ</li>
+              </ul>
+          </div>
+          <div class="experience-section tkj">
+              <h3>Selami Petualangan Nyata di TKJ</h3>
+              <ul>
+                  <li>Mampu melakukan konfigurasi router dan switch untuk membangun sebuah jaringan</li>
+                  <li>Menciptakan Desain Web Menarik dan Modern dengan Figma</li>
+                  <li>Merancang Tampilan Web Interaktif Menggunakan HTML, CSS, dan JavaScript di Visual Studio Code</li>
+                  <li>Membangun Website Statis dari Awal</li>
+                  <li>Mengembangkan Website Dinamis dengan WordPress dan Sourcecode</li>
+              </ul>
+          </div>
+      </div>
+    </div>
+    <footer>
+        <p>© 2024 Soffi Rizkyana Putri. Semua hak dilindungi undang-undang.</p>
+    </footer>
+    <script>
+        // Smooth Scrolling for all links (ensure this is present on every page)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+  </body>
+</html>
